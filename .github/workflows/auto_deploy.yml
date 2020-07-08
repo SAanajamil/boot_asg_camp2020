@@ -38,4 +38,4 @@ jobs:
     - name: Installing surge
       run: npm install --global surge
     - name: deploying using surge
-      run: surge ./build https://github.com/SAanajamil/boot_asg_camp2020 --token ${{secrets.SURGE_TOKEN}}
+      run: surge ./build https://bootasg_camp2020.surge.sh/ --token ${{secrets.SURGE_TOKEN}}

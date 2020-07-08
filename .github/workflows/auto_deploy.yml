@@ -21,13 +21,21 @@ jobs:
     - uses: actions/checkout@v2
 
     # Runs a single command using the runners shell
-    - name: Installig Node
-      uses: actions/setup-node@v2-beta
+    - name: Setup Node.js environment
+      uses: actions/setup-node@v1.4.2
       with:
         node-version: 12 
+
+    - name: GitHub Action for Yarn
+      uses: Borales/actions-yarn@v2.1.0
+        #yarn command
+        cmd: install #npm install / yarn install
+
+    - name: creating build
+      run: yarn build
 
     # Runs a set of commands using the runners shell
     - name: Installing surge
       run: npm install --global surge
     - name: deploying using surge
-      run: surge ./ boot_asg_camp2020.surge.sh --token ${{secrets.SURGE_TOKEN}}
+      run: surge ./ build https://github.com/SAanajamil/boot_asg_camp2020 --token ${{secrets.SURGE_TOKEN}}
